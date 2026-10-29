@@ -1,5 +1,9 @@
 <main class="content">
-  <div class="container">
-    <app-country-board />
+  <div class="container content__inner">
+    @if (store.selectedContinent()) {
+      <app-country-board />
+    } @else {
+      <p class="content__placeholder">Выберите страну</p>
+    }
   </div>
 </main>
