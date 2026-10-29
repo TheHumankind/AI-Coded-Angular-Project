@@ -1,0 +1,20 @@
+@use 'styles/colors';
+@use 'styles/fonts';
+
+/* You can add global styles to this file, and also import other style files */
+
+:root {
+  --content-width: 1440px;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--color-text);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--content-width);
+  margin-inline: auto;
+}
