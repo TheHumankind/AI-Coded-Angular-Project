@@ -1,0 +1,49 @@
+.country-board {
+  --grid-gap: 16px;
+  // Минимальная ширина карточки — её ширина при 5 карточках в ряд
+  // во внутренней ширине content (1440px минус отступы по бокам)
+  --card-min-width: calc(
+    (var(--content-width) - 2 * var(--content-padding-inline) - 4 * var(--grid-gap)) / 5
+  );
+}
+
+// Максимум 4 колонки на всю ширину; на узких экранах колонок меньше,
+// но карточка не становится уже --card-min-width
+.country-board__grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(max(min(var(--card-min-width), 100%), calc((100% - 3 * var(--grid-gap)) / 4)), 1fr)
+  );
+  gap: var(--grid-gap);
+}
+
+.country-board__status {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.country-board__message {
+  margin: 0;
+}
+
+.country-board__retry {
+  padding: 8px 16px;
+  border: 1px solid var(--color-text);
+  border-radius: 6px;
+  background: none;
+  font: inherit;
+  font-weight: 700;
+  color: inherit;
+  text-transform: uppercase;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--color-hover);
+  }
+}

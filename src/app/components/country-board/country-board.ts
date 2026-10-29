@@ -1,8 +1,9 @@
 import { Component, inject } from '@angular/core';
 import { CountryStore } from '../../services/country-store';
+import { CountryCard } from '../country-card/country-card';
 
 @Component({
-  imports: [],
+  imports: [CountryCard],
   selector: 'app-country-board',
   styleUrl: './country-board.scss',
   templateUrl: './country-board.html',

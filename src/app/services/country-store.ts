@@ -44,4 +44,12 @@ export class CountryStore {
       },
     });
   }
+
+  /** Повторить запрос для текущего выбранного континента */
+  retry(): void {
+    const continent = this._selectedContinent();
+    if (continent) {
+      this.loadByContinent(continent);
+    }
+  }
 }

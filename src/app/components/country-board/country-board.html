@@ -1,5 +1,16 @@
 <section class="country-board">
-  @if (store.selectedContinent(); as continent) {
-    <p>Selected: {{ continent.label }}</p>
+  @if (store.loading()) {
+    <p class="country-board__status">Loading…</p>
+  } @else if (store.error()) {
+    <div class="country-board__status">
+      <p class="country-board__message">REST Countries API error. Failed to load countries.</p>
+      <button class="country-board__retry" type="button" (click)="store.retry()">Try again</button>
+    </div>
+  } @else {
+    <div class="country-board__grid">
+      @for (country of store.countries(); track country.uuid) {
+        <app-country-card [country]="country" />
+      }
+    </div>
   }
 </section>

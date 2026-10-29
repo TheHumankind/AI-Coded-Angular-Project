@@ -8,8 +8,10 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  box-sizing: border-box;
   width: 100%;
   max-width: var(--content-width);
+  padding: var(--content-padding-block) var(--content-padding-inline);
   margin-inline: auto;
   background-color: rgba(0, 255, 0, 0.5);
 }
