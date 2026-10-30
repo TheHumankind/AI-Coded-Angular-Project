@@ -1,7 +1,19 @@
 <header class="header">
   <div class="container header__inner">
-    @for (continent of continents; track continent.label) {
-      <app-header-button [label]="continent.label" (pressed)="store.loadByContinent(continent)" />
-    }
+    <button
+    class="header__burger"
+    type="button"
+    (click)="toggleMenu()"
+    [attr.aria-expanded]="menuOpen()"
+    aria-label="Menu">
+      ☰
+    </button>
+
+    <nav class="header__nav"
+    [class.header__nav--open]="menuOpen()">
+      @for (continent of continents; track continent.label) {
+        <app-header-button [label]="continent.label" (pressed)="loadContinent(continent)" />
+      }
+    </nav>
   </div>
 </header>
