@@ -1,0 +1,10 @@
+<button
+  class="button"
+  [class.button--active]="active()"
+  type="button"
+  [disabled]="disabled()"
+  [attr.aria-current]="active() ? 'page' : null"
+  (click)="pressed.emit()"
+>
+  {{ label() }}
+</button>

@@ -1,4 +1,13 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
 .country-board {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
   --grid-gap: 16px;
   // Минимальная ширина карточки — её ширина при 5 карточках в ряд
   // во внутренней ширине content (1440px минус отступы по бокам)
@@ -16,6 +25,9 @@
     minmax(max(min(var(--card-min-width), 100%), calc((100% - 3 * var(--grid-gap)) / 4)), 1fr)
   );
   gap: var(--grid-gap);
+  // Сетка занимает свободное место, пагинация остаётся внизу
+  flex: 1;
+  align-content: start;
 }
 
 .country-board__status {

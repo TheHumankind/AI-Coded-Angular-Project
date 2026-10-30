@@ -1,0 +1,21 @@
+<nav class="country-pagination" aria-label="Pagination">
+  @if (store.totalPages() > 1) {
+    <app-button
+      label="‹"
+      [disabled]="store.page() === 1"
+      (pressed)="store.setPage(store.page() - 1)"
+    />
+    @for (page of pages(); track page) {
+      <app-button
+        [label]="'' + page"
+        [active]="page === store.page()"
+        (pressed)="store.setPage(page)"
+      />
+    }
+    <app-button
+      label="›"
+      [disabled]="store.page() === store.totalPages()"
+      (pressed)="store.setPage(store.page() + 1)"
+    />
+  }
+</nav>

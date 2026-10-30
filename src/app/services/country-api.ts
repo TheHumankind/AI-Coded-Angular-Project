@@ -6,7 +6,8 @@ import { Region } from '../models/region';
 
 // Запросы идут через dev-прокси (proxy.conf.mjs), он подставляет ключ из .env
 const API_URL = '/api/countries/v5';
-const PAGE_SIZE = 30;
+// Максимум free-тарифа; в каждом регионе стран меньше (до 60), поэтому грузим регион целиком
+const MAX_LIMIT = 100;
 
 @Service()
 export class CountryApi {
@@ -17,7 +18,7 @@ export class CountryApi {
       .get<CountriesResponse>(API_URL, {
         params: {
           region,
-          limit: PAGE_SIZE,
+          limit: MAX_LIMIT,
         },
       })
       .pipe(map((response) => response.data.objects));
