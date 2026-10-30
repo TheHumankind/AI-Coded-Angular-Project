@@ -10,8 +10,33 @@
 }
 
 .country-overview__title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   margin: 0;
   text-transform: uppercase;
+}
+
+.country-overview__flag {
+  height: 32px;
+  width: auto;
+  border: 1px solid var(--color-border);
+}
+
+.country-overview__block + .country-overview__block {
+  margin-top: 24px;
+}
+
+.country-overview__heading {
+  margin: 0 0 8px;
+  font-size: 16px;
+  color: var(--color-text-strong);
+  text-transform: uppercase;
+}
+
+.country-overview__text {
+  margin: 0;
+  line-height: 1.5;
 }
 
 .country-overview__list {
@@ -34,7 +59,7 @@
 
   dt {
     font-weight: 700;
-    color: var(--color-text-muted);
+    color: var(--color-text-strong);
     overflow-wrap: anywhere;
   }
 
@@ -42,4 +67,28 @@
     margin: 0;
     overflow-wrap: anywhere;
   }
+}
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.badge--yes {
+  background-color: var(--color-yes-bg);
+  color: var(--color-yes-text);
+}
+
+.badge--no {
+  background-color: var(--color-no-bg);
+  color: var(--color-no-text);
+}
+
+.badge--invalid {
+  background-color: var(--color-invalid-bg);
+  color: var(--color-invalid-text);
 }

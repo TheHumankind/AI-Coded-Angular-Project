@@ -1,7 +1,12 @@
 <section class="country-overview">
   <div class="country-overview__top">
     <app-button label="← Back" (pressed)="store.closeCountry()" />
-    <h2 class="country-overview__title">{{ store.openedCountry()?.names?.common }}</h2>
+    <h2 class="country-overview__title">
+      <span>{{ store.openedCountry()?.names?.common }}</span>
+      @if (flagUrl(); as url) {
+        <img class="country-overview__flag" [src]="url" alt="" />
+      }
+    </h2>
   </div>
 
   <app-request-status
@@ -10,13 +15,47 @@
     errorMessage="REST Countries API error. Failed to load country."
     (retry)="store.retryDetails()"
   >
-    <dl class="country-overview__list">
-      @for (row of rows(); track row.field) {
-        <div class="country-overview__row">
-          <dt>{{ row.field }}</dt>
-          <dd>{{ row.value }}</dd>
-        </div>
+    <section class="country-overview__block">
+      <h3 class="country-overview__heading">Description</h3>
+      @if (description(); as text) {
+        <p class="country-overview__text">{{ text }}</p>
+      } @else {
+        <span class="badge badge--invalid">Invalid</span>
       }
-    </dl>
+    </section>
+
+    <section class="country-overview__block">
+      <h3 class="country-overview__heading">General information</h3>
+      <dl class="country-overview__list">
+        @for (row of info(); track row.label) {
+          <div class="country-overview__row">
+            <dt>{{ row.label }}</dt>
+            <dd>
+              @if (row.value; as value) {
+                {{ value }}
+              } @else {
+                <span class="badge badge--invalid">Invalid</span>
+              }
+            </dd>
+          </div>
+        }
+      </dl>
+    </section>
+
+    <section class="country-overview__block">
+      <h3 class="country-overview__heading">Memberships</h3>
+      <dl class="country-overview__list">
+        @for (row of memberships(); track row.label) {
+          <div class="country-overview__row">
+            <dt>{{ row.label }}</dt>
+            <dd>
+              <span class="badge" [class.badge--yes]="row.member" [class.badge--no]="!row.member">
+                {{ row.member ? 'Yes' : 'No' }}
+              </span>
+            </dd>
+          </div>
+        }
+      </dl>
+    </section>
   </app-request-status>
 </section>

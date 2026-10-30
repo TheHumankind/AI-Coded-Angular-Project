@@ -13,7 +13,11 @@
   max-width: var(--content-width);
   padding: var(--content-padding-block) var(--content-padding-inline);
   margin-inline: auto;
-  background-color: rgba(0, 255, 0, 0.5);
+  background-color: var(--color-content-bg);
+  // Тень только по бокам: отрицательный spread не даёт ей выходить сверху и снизу
+  box-shadow:
+    -8px 0 16px -8px rgba(0, 0, 0, 0.15),
+    8px 0 16px -8px rgba(0, 0, 0, 0.15);
 }
 
 .content__inner {
@@ -24,5 +28,8 @@
 
 .content__placeholder {
   margin: auto;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-text-strong);
   text-transform: uppercase;
 }

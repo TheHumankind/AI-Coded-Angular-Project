@@ -14,12 +14,27 @@
   border: 1px solid var(--color-border);
   border-radius: 8px;
   background-color: var(--color-card-bg);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+// Только для устройств с мышью: на тач-экранах :hover «залипает» после касания
+@media (hover: hover) {
+  .country-card:hover {
+    // Поверх соседних карточек, пока увеличена
+    position: relative;
+    z-index: 1;
+    transform: scale(1.03);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+  }
 }
 
 .country-card__title {
   margin: 0;
   font-size: 18px;
   font-weight: 700;
+  color: var(--color-text-strong);
   line-height: 1.2;
   text-transform: uppercase;
 }
@@ -45,6 +60,7 @@
   dd {
     margin: 0;
     font-weight: 700;
+    color: var(--color-text-strong);
     text-align: right;
   }
 }
@@ -71,6 +87,7 @@
   border: 1px solid var(--color-border);
   border-radius: 6px;
   color: inherit;
+  transition: background-color 0.2s ease;
   text-decoration: none;
 
   &:hover {

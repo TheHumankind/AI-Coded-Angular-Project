@@ -1,11 +1,31 @@
 .header-button {
-  padding: 0;
+  position: relative;
+  padding: 4px 0;
   border: 0;
   background: none;
   font: inherit;
   font-size: 14px;
   font-weight: 700;
   text-transform: uppercase;
-  color: inherit;
+  color: var(--color-text-strong);
   cursor: pointer;
+}
+
+// Линия под текстом: масштабируется от 0 до 100% ширины, начиная с левого края
+.header-button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.header-button:hover::after,
+.header-button:focus-visible::after {
+  transform: scaleX(1);
 }

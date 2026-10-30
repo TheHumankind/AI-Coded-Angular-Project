@@ -1,12 +1,35 @@
+// Полупрозрачная панель с размытием того, что проезжает под ней (header и выпадающее меню)
+@mixin glass {
+  border-radius: 12px;
+  background-color: var(--color-header-bg);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+}
+
 :host {
   display: block;
+  position: sticky;
+  top: 10px;
+  z-index: 10;
+  // На 20px шире контента с каждой стороны; на узких экранах — на всю ширину с полями по 10px
+  width: calc(100% - 20px);
+  max-width: calc(var(--content-width) + 40px);
+  margin: 10px auto 0;
 }
 
 .header {
+  position: relative;
   width: 100%;
   min-height: 64px;
-  background-color: rgba(255, 0, 0, 0.5);
   color: var(--color-text);
+
+  &::before {
+    @include glass;
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 }
 
 .header__inner {
@@ -15,6 +38,8 @@
   align-items: center;
   justify-content: flex-end;
   gap: 24px;
+  box-sizing: border-box;
+  padding-inline: var(--content-padding-inline);
   min-height: 64px;
 }
 
@@ -23,7 +48,17 @@
   height: 100%;
   align-items: center;
   justify-content: center;
-  column-gap: 10px;
+  column-gap: 18px;
+}
+
+// Вертикальная линия между пунктами (на мобильной ширине пункты в столбик — линии там нет)
+.header__nav app-header-button {
+  display: block;
+
+  &:not(:first-child) {
+    padding-left: 18px;
+    border-left: 1px solid var(--color-border);
+  }
 }
 
 .header__burger {
@@ -32,6 +67,7 @@
   height: 35px;
   font-size: 20px;
   font-weight: 700;
+  color: var(--color-text-strong);
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -39,20 +75,42 @@
 
 
 @media screen and (max-width: 768px) {
+  // display: none анимировать нельзя, поэтому меню скрыто через opacity + visibility:
+  // visibility: hidden убирает его из фокуса Tab и от скринридеров, а задержка в transition
+  // даёт анимации закрытия доиграть до того, как меню исчезнет
   .header__nav {
-    display: none;
+    @include glass;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 8px);
     left: 0;
     right: 0;
     flex-direction: column;
+    // Перебиваем height: 100% из десктопных стилей: меню должно быть по высоте содержимого
+    height: auto;
     row-gap: 10px;
-    background-color: rgb(128, 128, 128);
+    padding: 25px 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0s linear 0.25s;
+  }
+
+  .header__nav app-header-button:not(:first-child) {
+    padding-left: 0;
+    border-left: 0;
   }
 
   .header__nav--open {
-    display: flex;
-    padding: 25px 0px;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0s;
   }
 
   .header__burger {

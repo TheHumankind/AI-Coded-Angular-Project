@@ -4,7 +4,17 @@
   --color-border: #d4d4d4;
   --color-card-bg: #ffffff;
   --color-hover: #f0f0f0;
-  --color-button: rgba(128, 0, 128, 0.5);
-  --color-button-hover: rgba(128, 0, 128, 0.65);
-  --color-button-active: rgba(128, 0, 128, 0.9);
+  --color-content-bg: #fffdf5;
+  --color-header-bg: rgba(255, 255, 255, 0.6);
+  --color-text-strong: #1e1e1e;
+  --color-button-bg: #ffffff;
+  --color-button-border: var(--color-border);
+  --color-button-text: #1e1e1e;
+  --color-button-text-active: #168a3a;
+  --color-yes-bg: #c9f0d3;
+  --color-yes-text: #17692e;
+  --color-no-bg: #ffe9a6;
+  --color-no-text: #7a5b00;
+  --color-invalid-bg: #f9d0d0;
+  --color-invalid-text: #8a1f1f;
 }
