@@ -1,6 +1,8 @@
 <main class="content">
   <div class="container content__inner">
-    @if (store.selectedContinent()) {
+    @if (store.openedCountry()) {
+      <app-country-overview />
+    } @else if (store.selectedContinent()) {
       <app-country-board />
     } @else {
       <p class="content__placeholder">Select a region</p>

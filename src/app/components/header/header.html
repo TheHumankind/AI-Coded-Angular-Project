@@ -1,6 +1,6 @@
 <header class="header">
   <div class="container header__inner">
-    @for (continent of continents; track continent.region) {
+    @for (continent of continents; track continent.label) {
       <app-header-button [label]="continent.label" (pressed)="store.loadByContinent(continent)" />
     }
   </div>

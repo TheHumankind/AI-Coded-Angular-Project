@@ -1,17 +1,15 @@
 <section class="country-board">
-  @if (store.loading()) {
-    <p class="country-board__status">Loading…</p>
-  } @else if (store.error()) {
-    <div class="country-board__status">
-      <p class="country-board__message">REST Countries API error. Failed to load countries.</p>
-      <button class="country-board__retry" type="button" (click)="store.retry()">Try again</button>
-    </div>
-  } @else {
+  <app-request-status
+    [loading]="store.loading()"
+    [error]="!!store.error()"
+    errorMessage="REST Countries API error. Failed to load countries."
+    (retry)="store.retry()"
+  >
     <div class="country-board__grid">
       @for (country of store.countries(); track country.uuid) {
-        <app-country-card [country]="country" />
+        <app-country-card [country]="country" (opened)="store.openCountry(country)" />
       }
     </div>
     <app-country-pagination />
-  }
+  </app-request-status>
 </section>

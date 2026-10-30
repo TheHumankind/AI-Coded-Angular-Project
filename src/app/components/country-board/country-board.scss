@@ -29,33 +29,3 @@
   flex: 1;
   align-content: start;
 }
-
-.country-board__status {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-  margin: 0;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-.country-board__message {
-  margin: 0;
-}
-
-.country-board__retry {
-  padding: 8px 16px;
-  border: 1px solid var(--color-text);
-  border-radius: 6px;
-  background: none;
-  font: inherit;
-  font-weight: 700;
-  color: inherit;
-  text-transform: uppercase;
-  cursor: pointer;
-
-  &:hover {
-    background-color: var(--color-hover);
-  }
-}

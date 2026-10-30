@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { DecimalPipe } from '@angular/common';
 import { Country, CountryLinks } from '../../models/country';
 
@@ -21,6 +21,7 @@ interface CardDetail {
 })
 export class CountryCard {
   readonly country = input.required<Country>();
+  readonly opened = output<void>();
 
   // Строки с пустым значением не попадают в карточку
   protected readonly details = computed<CardDetail[]>(() => {

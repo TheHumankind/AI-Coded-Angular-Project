@@ -1,0 +1,10 @@
+@if (loading()) {
+  <p class="request-status">Loading…</p>
+} @else if (error()) {
+  <div class="request-status">
+    <p class="request-status__message">{{ errorMessage() }}</p>
+    <app-button label="Try again" (pressed)="retry.emit()" />
+  </div>
+} @else {
+  <ng-content />
+}

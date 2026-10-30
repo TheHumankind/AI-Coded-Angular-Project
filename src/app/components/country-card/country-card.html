@@ -1,4 +1,10 @@
-<article class="country-card">
+<article
+  class="country-card"
+  tabindex="0"
+  role="button"
+  (click)="opened.emit()"
+  (keydown.enter)="opened.emit()"
+>
   <h2 class="country-card__title">{{ country().names.common }}</h2>
 
   <p class="country-card__description">{{ country().descriptions.short }}</p>
@@ -29,6 +35,8 @@
         [attr.aria-disabled]="!link.url || null"
         [attr.aria-label]="link.title"
         [title]="link.url ? link.title : link.title + ' — not available'"
+        (click)="$event.stopPropagation()"
+        (keydown.enter)="$event.stopPropagation()"
         target="_blank"
         rel="noopener noreferrer"
       >
